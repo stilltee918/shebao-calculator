@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     // 插入新数据
     console.log('Inserting new data...');
-    const { error } = await supabase.from('salaries').insert(salaries);
+    const { error } = await supabase.from('salaries').insert(salaries as any[]);
 
     if (error) {
       console.error('Insert error:', error);
