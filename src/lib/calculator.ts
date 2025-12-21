@@ -38,7 +38,7 @@ async function calculateWithCityData(cityData: City): Promise<CalculationResult[
   }
 
   // 按员工分组
-  const employeeGroups = salaries.reduce((acc: { [key: string]: Salary[] }, salary) => {
+  const employeeGroups = (salaries as Salary[]).reduce((acc: { [key: string]: Salary[] }, salary) => {
     if (!acc[salary.employee_name]) {
       acc[salary.employee_name] = [];
     }
@@ -99,6 +99,7 @@ export async function saveCalculationResults(results: CalculationResult[]): Prom
   await supabase.from('results').delete().neq('id', -1);
 
   // 插入新结果
+  // @ts-ignore
   const { error } = await supabase.from('results').insert(dbResults);
 
   if (error) {

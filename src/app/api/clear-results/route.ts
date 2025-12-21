@@ -3,6 +3,7 @@ import { supabase } from '@/lib/supabase';
 
 export async function POST() {
   try {
+    // @ts-ignore
     const { error } = await supabase
       .from('results')
       .delete()
