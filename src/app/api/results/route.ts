@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { calculateContributions } from '@/lib/calculator';
+import { Result } from '@/types';
 
 export async function GET() {
   try {
@@ -17,13 +18,13 @@ export async function GET() {
     const calculationResults = await calculateContributions();
 
     // 合并数据，添加月份信息
-    const resultsWithMonths = results?.map(result => {
+    const resultsWithMonths = (results as Result[]).map(result => {
       const calcResult = calculationResults.find(r => r.employee_name === result.employee_name);
       return {
         ...result,
         months_count: calcResult?.months_count || 12
       };
-    }) || [];
+    });
 
     return NextResponse.json({
       results: resultsWithMonths
