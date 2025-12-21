@@ -44,7 +44,8 @@ export async function POST(request: NextRequest) {
 
     // 插入新数据
     console.log('Inserting new data...');
-    const { error } = await supabase.from('cities').insert(cities as any[]);
+    // @ts-ignore
+    const { error } = await supabase.from('cities').insert(cities);
 
     if (error) {
       console.error('Insert error:', error);
