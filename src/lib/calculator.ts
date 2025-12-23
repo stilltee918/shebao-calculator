@@ -38,13 +38,13 @@ async function calculateWithCityData(cityData: City): Promise<CalculationResult[
   }
 
   // 按员工分组
-  const employeeGroups = (salaries as Salary[]).reduce((acc: { [key: string]: Salary[] }, salary) => {
-    if (!acc[salary.employee_name]) {
-      acc[salary.employee_name] = [];
+  const employeeGroups: { [key: string]: Salary[] } = {};
+  for (const salary of salaries as Salary[]) {
+    if (!employeeGroups[salary.employee_name]) {
+      employeeGroups[salary.employee_name] = [];
     }
-    acc[salary.employee_name].push(salary);
-    return acc;
-  }, {});
+    employeeGroups[salary.employee_name].push(salary);
+  }
 
   // 计算每个员工的结果
   const results: CalculationResult[] = [];
