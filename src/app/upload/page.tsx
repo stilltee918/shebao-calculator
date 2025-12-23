@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function UploadPage() {
   const [uploadingCities, setUploadingCities] = useState(false);
@@ -225,12 +226,12 @@ export default function UploadPage() {
 
           {/* 返回首页 */}
           <div className="text-center">
-            <a
+            <Link
               href="/"
               className="text-blue-600 hover:text-blue-800"
             >
               返回首页
-            </a>
+            </Link>
           </div>
         </div>
       </div>

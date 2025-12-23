@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Result {
   id: number;
@@ -108,18 +109,18 @@ export default function ResultsPage() {
             计算结果
           </h1>
           <div className="flex space-x-4">
-            <a
+            <Link
               href="/"
               className="text-blue-600 hover:text-blue-800"
             >
               返回首页
-            </a>
-            <a
+            </Link>
+            <Link
               href="/upload"
               className="text-blue-600 hover:text-blue-800"
             >
               上传数据
-            </a>
+            </Link>
           </div>
         </div>
 
